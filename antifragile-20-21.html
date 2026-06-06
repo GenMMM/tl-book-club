@@ -135,23 +135,24 @@ body {
   user-select: none;
 }
 .toggle-icon.open { transform: rotate(45deg); }
+.toggle-bar.active { background: #ede8d8; border-top-color: #ede8d8; }
 
 /* ── 展开区域 ── */
-.expand-section { display: none; background: #ede8d8; padding: 0 28px 24px; }
+.expand-section { display: none; background: #ede8d8; padding: 0 28px 16px; }
 .expand-section.visible { display: block; }
 
 .expand-inner-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 18px 0 14px;
+  padding: 12px 0 10px;
   border-bottom: 0.5px solid #d8d0c0;
-  margin-bottom: 16px;
+  margin-bottom: 10px;
 }
 .expand-title { font-size: 11px; color: #8a7a60; letter-spacing: 0.18em; }
 .expand-close { font-size: 11px; color: #c9a227; cursor: pointer; }
 
-.practice-item { padding: 14px 0; border-bottom: 0.5px solid #d8d0c0; }
+.practice-item { padding: 12px 0 12px 12px; border-bottom: 0.5px solid #d8d0c0; }
 .practice-item:last-of-type { border-bottom: none; }
 .practice-num { font-size: 10px; color: #9a8a6a; letter-spacing: 0.08em; margin-bottom: 5px; }
 .practice-title {
@@ -161,30 +162,30 @@ body {
   margin-bottom: 5px;
   line-height: 1.5;
 }
-.practice-desc { font-size: 14px; color: #4a4030; line-height: 1.8; }
+.practice-desc { font-size: 14px; color: #4a4030; line-height: 1.6; }
 
-.voice-divider { border: none; border-top: 0.5px solid #d0c8b8; margin: 18px 0; }
-.voice-label { font-size: 11px; color: #8a7a60; letter-spacing: 0.18em; margin-bottom: 14px; }
+.voice-divider { border: none; border-top: 0.5px solid #d0c8b8; margin: 10px 0; }
+.voice-label { font-size: 11px; color: #8a7a60; letter-spacing: 0.18em; margin-bottom: 8px; }
 .voice-card {
   background: #faf8f2;
   border-radius: 8px;
-  padding: 14px 16px;
-  margin-bottom: 10px;
+  padding: 10px 12px;
+  margin-bottom: 5px;
   position: relative;
   border: 0.5px solid #e0d8c8;
 }
 .voice-card:last-child { margin-bottom: 0; }
 .voice-deco {
   position: absolute;
-  top: 10px;
-  right: 12px;
+  top: 8px;
+  right: 10px;
   font-size: 22px;
   color: #c9a227;
   opacity: 0.2;
   font-family: serif;
   line-height: 1;
 }
-.voice-text { font-size: 14px; color: #2a2218; line-height: 1.8; margin-bottom: 8px; padding-right: 20px; }
+.voice-text { font-size: 14px; color: #2a2218; line-height: 1.6; margin-bottom: 4px; padding-right: 20px; }
 .voice-author { font-size: 11px; color: #9a8a6a; text-align: right; }
 
 /* ── 底部 ── */
@@ -613,12 +614,14 @@ function toggleSection(bar) {
   const isOpen = section.classList.contains('visible');
   section.classList.toggle('visible', !isOpen);
   icon.classList.toggle('open', !isOpen);
+  bar.classList.toggle('active', !isOpen);
   bar.querySelector('.toggle-label').textContent = isOpen ? '实践应用 · 书友原声' : '收起';
 }
 function closeSection(btn) {
   const section = btn.closest('.expand-section');
   const bar = section.previousElementSibling;
   section.classList.remove('visible');
+  bar.classList.remove('active');
   bar.querySelector('.toggle-icon').classList.remove('open');
   bar.querySelector('.toggle-label').textContent = '实践应用 · 书友原声';
 }
