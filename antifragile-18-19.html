@@ -26,29 +26,27 @@ body {
 
 /* ── 顶部 ── */
 .header {
-  padding: 36px 28px 28px;
+  padding: 28px 28px 20px;
   border-bottom: 0.5px solid #e0ddd6;
 }
 .header-meta {
   font-size: 11px;
   color: #9a8c78;
   letter-spacing: 0.12em;
-  margin-bottom: 14px;
+  margin-bottom: 12px;
 }
 .header-title {
-  font-family: 'Noto Serif SC', serif;
   font-size: 26px;
   font-weight: 700;
   color: #1a1816;
   line-height: 1.4;
-  margin-bottom: 16px;
+  margin-bottom: 12px;
 }
 .header-sub {
-  font-family: 'Noto Serif SC', serif;
-  font-size: 13px;
+  font-size: 14px;
   color: #6b6358;
   line-height: 1.9;
-  margin-bottom: 18px;
+  margin-bottom: 12px;
 }
 .header-stats {
   display: flex;
@@ -60,7 +58,7 @@ body {
 
 /* ── 分割线 ── */
 .divider {
-  margin: 22px 28px;
+  margin: 14px 28px;
   border: none;
   border-top: 0.5px solid #e0ddd6;
 }
@@ -75,17 +73,17 @@ body {
 }
 .q-title {
   font-family: 'Noto Serif SC', serif;
-  font-size: 16px;
+  font-size: 18px;
   font-weight: 700;
   color: #1a1816;
   line-height: 1.6;
-  margin-bottom: 10px;
+  margin-bottom: 8px;
 }
 .q-lead {
-  font-size: 12px;
+  font-size: 14px;
   color: #6b6358;
   line-height: 1.9;
-  margin-bottom: 16px;
+  margin-bottom: 12px;
 }
 
 /* ── 案例 ── */
@@ -93,10 +91,10 @@ body {
 .case-item {
   display: flex;
   gap: 12px;
-  padding: 10px 14px;
+  padding: 8px 12px;
   background: #f0ece3;
   border-radius: 6px;
-  margin-bottom: 6px;
+  margin-bottom: 4px;
 }
 .case-bar {
   width: 3px;
@@ -106,30 +104,29 @@ body {
   margin: 3px 0;
 }
 .case-text {
-  font-size: 12px;
+  font-size: 14px;
   color: #4a453e;
   line-height: 1.8;
 }
 .case-text strong { color: #2a2218; font-weight: 500; }
 
-/* ── 展开触发 ── */
-.expand-trigger {
+/* ── 展开触发栏 ── */
+.toggle-bar {
   display: flex;
+  justify-content: flex-end;
   align-items: center;
-  gap: 10px;
-  padding: 16px 28px;
+  gap: 8px;
+  padding: 14px 28px;
   cursor: pointer;
+  border-top: 0.5px solid #e8e4dc;
+  margin-top: 16px;
 }
-.trig-line { flex: 1; height: 0.5px; background: #d8d4cc; }
-.trig-text {
-  font-size: 10px;
+.toggle-label {
+  font-size: 12px;
   color: #c9a227;
-  letter-spacing: 0.08em;
-  white-space: nowrap;
-  user-select: none;
-  font-weight: 500;
+  letter-spacing: 0.05em;
 }
-.trig-icon {
+.toggle-icon {
   font-size: 14px;
   color: #c9a227;
   transition: transform 0.3s;
@@ -137,102 +134,66 @@ body {
   line-height: 1;
   user-select: none;
 }
-.trig-icon.open { transform: rotate(45deg); }
+.toggle-icon.open { transform: rotate(45deg); }
+.toggle-bar.active { background: #ede8d8; border-top-color: #ede8d8; }
 
-/* ── 展开内容 ── */
-.expand-content { display: none; }
-.expand-content.open { display: block; }
+/* ── 展开区域 ── */
+.expand-section { display: none; background: #ede8d8; padding: 0 28px 16px; }
+.expand-section.visible { display: block; }
 
-/* ── 实践应用 ── */
-.sec-apply {
-  background: #e8e2d8;
-  padding: 22px 24px;
+.expand-inner-header {
+  padding: 12px 0 10px;
+  border-bottom: 0.5px solid #d8d0c0;
+  margin-bottom: 10px;
 }
-.sec-label {
-  font-size: 9px;
-  letter-spacing: 0.2em;
-  margin-bottom: 16px;
-}
-.apply-item {
-  padding: 14px 0;
-  border-bottom: 0.5px solid #d4cec4;
-}
-.apply-item:last-child { border-bottom: none; padding-bottom: 0; }
-.apply-index {
-  font-size: 9px;
-  color: #9a8c78;
-  letter-spacing: 0.1em;
-  margin-bottom: 6px;
-}
-.apply-headline {
-  font-family: 'Noto Serif SC', serif;
+.expand-title { font-size: 11px; color: #8a7a60; letter-spacing: 0.18em; }
+
+.practice-item { padding: 12px 0 12px 12px; border-bottom: 0.5px solid #d8d0c0; }
+.practice-item:last-of-type { border-bottom: none; }
+.practice-num { font-size: 10px; color: #9a8a6a; letter-spacing: 0.08em; margin-bottom: 5px; }
+.practice-title {
   font-size: 15px;
   font-weight: 700;
-  color: #2a2218;
-  line-height: 1.6;
+  color: #1a1816;
   margin-bottom: 5px;
+  line-height: 1.5;
 }
-.apply-body {
-  font-size: 11px;
-  color: #7a7060;
-  line-height: 1.9;
-}
+.practice-desc { font-size: 14px; color: #4a4030; line-height: 1.6; }
 
-/* ── 书友原声 ── */
-.sec-voices {
-  background: #faf9f6;
-  padding: 20px 24px;
-}
-.big-quote {
-  padding: 16px 16px;
-  margin-bottom: 10px;
-  border-radius: 6px;
+.voice-divider { border: none; border-top: 0.5px solid #d0c8b8; margin: 10px 0; }
+.voice-label { font-size: 11px; color: #8a7a60; letter-spacing: 0.18em; margin-bottom: 8px; }
+.voice-card {
+  background: #faf8f2;
+  border-radius: 8px;
+  padding: 10px 12px;
+  margin-bottom: 5px;
   position: relative;
-  overflow: hidden;
+  border: 0.5px solid #e0d8c8;
 }
-.big-quote:last-child { margin-bottom: 0; }
-.big-quote.c1 { background: #ede8d0; }
-.big-quote.c2 { background: #dde8da; }
-.big-quote.c3 { background: #e4d8cc; }
-.big-quote.c4 { background: #dde0e8; }
-.q-mark {
-  font-family: 'Noto Serif SC', serif;
-  font-size: 48px;
-  line-height: 0.8;
-  font-weight: 700;
-  opacity: 0.1;
+.voice-card:last-child { margin-bottom: 0; }
+.voice-deco {
   position: absolute;
   top: 8px;
   right: 10px;
-  color: #3a3020;
-  user-select: none;
+  font-size: 22px;
+  color: #c9a227;
+  opacity: 0.2;
+  font-family: serif;
+  line-height: 1;
 }
-.q-body {
-  font-family: 'Noto Serif SC', serif;
-  font-size: 13px;
-  line-height: 1.8;
-  position: relative;
-  color: #2a2218;
-  margin-bottom: 8px;
-}
-.q-name {
-  font-size: 10px;
-  opacity: 0.45;
-  position: relative;
-  color: #2a2218;
-  font-weight: 500;
-}
+.voice-text { font-size: 14px; color: #2a2218; line-height: 1.6; margin-bottom: 4px; padding-right: 20px; }
+.voice-author { font-size: 11px; color: #9a8a6a; text-align: right; }
 
 /* ── 底部 ── */
 .footer {
-  padding: 28px;
+  padding: 20px 28px;
   border-top: 0.5px solid #e0ddd6;
   font-size: 10px;
   color: #b0a898;
   text-align: center;
   line-height: 1.8;
 }
-.footer-logo { font-family: 'Noto Serif SC', serif; font-size: 13px; color: #6b6358; margin-bottom: 6px; }
+.footer-logo { font-size: 13px; color: #6b6358; margin-bottom: 6px; }
 
 /* ── Top nav ── */
 .top-nav {
@@ -294,37 +255,35 @@ body {
       <div class="case-text"><strong>日常案例：</strong>1000 公斤石头一次砸死人 vs. 1000 块 1 公斤石头分批砸；40/50/60km 车速碰撞，损失非线性递增；汽车数量增加带来的交通成本非线性放大。</div>
     </div>
   </div>
-  <div class="expand-trigger" onclick="toggle(this,'e1')">
-    <div class="trig-line"></div>
-    <div class="trig-text">实践应用 · 书友原声</div>
-    <div class="trig-icon">+</div>
+  <div class="toggle-bar" onclick="toggleSection(this)">
+    <span class="toggle-label">实践应用 · 书友原声</span>
+    <span class="toggle-icon">+</span>
   </div>
-  <div class="expand-content" id="e1">
-    <div class="sec-apply">
-      <div class="sec-label" style="color:#9a8c78;">实 践 应 用</div>
-      <div class="apply-item">
-        <div class="apply-index">应用 01</div>
-        <div class="apply-headline">评估决策时，先问损失会不会指数放大。</div>
-        <div class="apply-body">情况变得更坏时，损失会不会远超预期的倍数？若是，该事物具有凹性脆弱特征，需要格外警惕。</div>
-      </div>
-      <div class="apply-item">
-        <div class="apply-index">应用 02</div>
-        <div class="apply-headline">识别生活中的"非线性陷阱"。</div>
-        <div class="apply-body">迟到不是多几分钟，是可能多几个小时；堵车不是多 10%，是指数级恶化。用凸凹性眼光重新审视日常风险。</div>
-      </div>
-      <div class="apply-item">
-        <div class="apply-index">应用 03</div>
-        <div class="apply-headline">优先在"有限下行、无限上行"的事物上配置资源。</div>
-        <div class="apply-body">这是杠铃策略的精髓——把资源放在凸性结构上，让不对称性为你服务。</div>
-      </div>
+  <div class="expand-section">
+    <div class="expand-inner-header">
+      <div class="expand-title">实 践 应 用</div>
     </div>
-    <div class="sec-voices">
-      <div class="sec-label" style="color:#9a8c78;">书 友 原 声</div>
-      <div class="big-quote c1">
-        <div class="q-mark">"</div>
-        <div class="q-body">其实就是斜率，他这一堆话就斜率两个字就概括了。</div>
-        <div class="q-name">— 书友</div>
-      </div>
+    <div class="practice-item">
+      <div class="practice-num">应用 01</div>
+      <div class="practice-title">评估决策时，先问损失会不会指数放大。</div>
+      <div class="practice-desc">情况变得更坏时，损失会不会远超预期的倍数？若是，该事物具有凹性脆弱特征，需要格外警惕。</div>
+    </div>
+    <div class="practice-item">
+      <div class="practice-num">应用 02</div>
+      <div class="practice-title">识别生活中的"非线性陷阱"。</div>
+      <div class="practice-desc">迟到不是多几分钟，是可能多几个小时；堵车不是多 10%，是指数级恶化。用凸凹性眼光重新审视日常风险。</div>
+    </div>
+    <div class="practice-item">
+      <div class="practice-num">应用 03</div>
+      <div class="practice-title">优先在"有限下行、无限上行"的事物上配置资源。</div>
+      <div class="practice-desc">这是杠铃策略的精髓——把资源放在凸性结构上，让不对称性为你服务。</div>
+    </div>
+    <hr class="voice-divider">
+    <div class="voice-label">书 友 原 声</div>
+    <div class="voice-card">
+      <div class="voice-deco">"</div>
+      <div class="voice-text">其实就是斜率，他这一堆话就斜率两个字就概括了。</div>
+      <div class="voice-author">— 书友</div>
     </div>
   </div>
 
@@ -349,37 +308,35 @@ body {
       <div class="case-text"><strong>全球化供应链的脆弱：</strong>200 年前欧洲工地就地取材、项目可提前完工；全球化供应链的复杂性放大了脆弱性，一个零件故障即引发连锁反应。</div>
     </div>
   </div>
-  <div class="expand-trigger" onclick="toggle(this,'e2')">
-    <div class="trig-line"></div>
-    <div class="trig-text">实践应用 · 书友原声</div>
-    <div class="trig-icon">+</div>
+  <div class="toggle-bar" onclick="toggleSection(this)">
+    <span class="toggle-label">实践应用 · 书友原声</span>
+    <span class="toggle-icon">+</span>
   </div>
-  <div class="expand-content" id="e2">
-    <div class="sec-apply">
-      <div class="sec-label" style="color:#9a8c78;">实 践 应 用</div>
-      <div class="apply-item">
-        <div class="apply-index">应用 01</div>
-        <div class="apply-headline">重要约定提前 30% 出发。</div>
-        <div class="apply-body">把冗余时间视为保险费，而非浪费。延误的代价是非线性的，冗余的成本是线性的——账算下来冗余永远值得。</div>
-      </div>
-      <div class="apply-item">
-        <div class="apply-index">应用 02</div>
-        <div class="apply-headline">项目计划主动加入缓冲周期。</div>
-        <div class="apply-body">不按理想路径排期；把"最坏情况下还能完成"作为基准，而非"一切顺利时的速度"。</div>
-      </div>
-      <div class="apply-item">
-        <div class="apply-index">应用 03</div>
-        <div class="apply-headline">关键环节至少保留一个备用方案。</div>
-        <div class="apply-body">核心人员、技术、供应——任何单点失效都可能触发非线性连锁。备用方案是冗余的最小形式。</div>
-      </div>
+  <div class="expand-section">
+    <div class="expand-inner-header">
+      <div class="expand-title">实 践 应 用</div>
     </div>
-    <div class="sec-voices">
-      <div class="sec-label" style="color:#9a8c78;">书 友 原 声</div>
-      <div class="big-quote c2">
-        <div class="q-mark">"</div>
-        <div class="q-body">你算好的时间不堵车能到，堵车可能慢几个小时；不堵车顶多提前几分钟——这种非对称性让你的平均到达时间比预想晚很多。所以要给自己留足够多的 Redundancy，干任何事情都应该有 backup plan。</div>
-        <div class="q-name">— 赵志</div>
-      </div>
+    <div class="practice-item">
+      <div class="practice-num">应用 01</div>
+      <div class="practice-title">重要约定提前 30% 出发。</div>
+      <div class="practice-desc">把冗余时间视为保险费，而非浪费。延误的代价是非线性的，冗余的成本是线性的——账算下来冗余永远值得。</div>
+    </div>
+    <div class="practice-item">
+      <div class="practice-num">应用 02</div>
+      <div class="practice-title">项目计划主动加入缓冲周期。</div>
+      <div class="practice-desc">不按理想路径排期；把"最坏情况下还能完成"作为基准，而非"一切顺利时的速度"。</div>
+    </div>
+    <div class="practice-item">
+      <div class="practice-num">应用 03</div>
+      <div class="practice-title">关键环节至少保留一个备用方案。</div>
+      <div class="practice-desc">核心人员、技术、供应——任何单点失效都可能触发非线性连锁。备用方案是冗余的最小形式。</div>
+    </div>
+    <hr class="voice-divider">
+    <div class="voice-label">书 友 原 声</div>
+    <div class="voice-card">
+      <div class="voice-deco">"</div>
+      <div class="voice-text">你算好的时间不堵车能到，堵车可能慢几个小时；不堵车顶多提前几分钟——这种非对称性让你的平均到达时间比预想晚很多。所以要给自己留足够多的 Redundancy，干任何事情都应该有 backup plan。</div>
+      <div class="voice-author">— 赵志</div>
     </div>
   </div>
 
@@ -404,37 +361,35 @@ body {
       <div class="case-text"><strong>边界即风险：</strong>饼越摊越大，接触不可控风险越多，黑天鹅概率越高。恐龙灭绝时，小型啮齿动物靠体小数量多存活——用个体脆弱换种群反脆弱。</div>
     </div>
   </div>
-  <div class="expand-trigger" onclick="toggle(this,'e3')">
-    <div class="trig-line"></div>
-    <div class="trig-text">实践应用 · 书友原声</div>
-    <div class="trig-icon">+</div>
+  <div class="toggle-bar" onclick="toggleSection(this)">
+    <span class="toggle-label">实践应用 · 书友原声</span>
+    <span class="toggle-icon">+</span>
   </div>
-  <div class="expand-content" id="e3">
-    <div class="sec-apply">
-      <div class="sec-label" style="color:#9a8c78;">实 践 应 用</div>
-      <div class="apply-item">
-        <div class="apply-index">应用 01</div>
-        <div class="apply-headline">构建多元化的生活"生态"。</div>
-        <div class="apply-body">不把核心依赖集中在单一工作、人际关系或收入来源——多条线才能在一条断掉时依然存活。</div>
-      </div>
-      <div class="apply-item">
-        <div class="apply-index">应用 02</div>
-        <div class="apply-headline">评估规模时先确认场景。</div>
-        <div class="apply-body">你的"大"是在运河里还是在大海里？台积电专注制造胜过英特尔，但华为依赖台积电则是脆弱——场景决定结论。</div>
-      </div>
-      <div class="apply-item">
-        <div class="apply-index">应用 03</div>
-        <div class="apply-headline">组织架构优先保证模块可以独立存活。</div>
-        <div class="apply-body">高度集中的效率换来的是集中失效的风险；模块化虽然"低效"，却是真正的反脆弱结构。</div>
-      </div>
+  <div class="expand-section">
+    <div class="expand-inner-header">
+      <div class="expand-title">实 践 应 用</div>
     </div>
-    <div class="sec-voices">
-      <div class="sec-label" style="color:#9a8c78;">书 友 原 声</div>
-      <div class="big-quote c3">
-        <div class="q-mark">"</div>
-        <div class="q-body">规模可以很大，但只要内部每个独立个体有效率，整体就是反脆弱的——视角是整体平均值，不是保证每个个体不死。</div>
-        <div class="q-name">— 书友</div>
-      </div>
+    <div class="practice-item">
+      <div class="practice-num">应用 01</div>
+      <div class="practice-title">构建多元化的生活"生态"。</div>
+      <div class="practice-desc">不把核心依赖集中在单一工作、人际关系或收入来源——多条线才能在一条断掉时依然存活。</div>
+    </div>
+    <div class="practice-item">
+      <div class="practice-num">应用 02</div>
+      <div class="practice-title">评估规模时先确认场景。</div>
+      <div class="practice-desc">你的"大"是在运河里还是在大海里？台积电专注制造胜过英特尔，但华为依赖台积电则是脆弱——场景决定结论。</div>
+    </div>
+    <div class="practice-item">
+      <div class="practice-num">应用 03</div>
+      <div class="practice-title">组织架构优先保证模块可以独立存活。</div>
+      <div class="practice-desc">高度集中的效率换来的是集中失效的风险；模块化虽然"低效"，却是真正的反脆弱结构。</div>
+    </div>
+    <hr class="voice-divider">
+    <div class="voice-label">书 友 原 声</div>
+    <div class="voice-card">
+      <div class="voice-deco">"</div>
+      <div class="voice-text">规模可以很大，但只要内部每个独立个体有效率，整体就是反脆弱的——视角是整体平均值，不是保证每个个体不死。</div>
+      <div class="voice-author">— 书友</div>
     </div>
   </div>
 
@@ -459,42 +414,40 @@ body {
       <div class="case-text"><strong>追求者的大冲击：</strong>男生追女生每天请吃饭半年，不如一次送贵重礼物——大冲击比线性累积更能打动人，是凸性原理的日常版本。</div>
     </div>
   </div>
-  <div class="expand-trigger" onclick="toggle(this,'e4')">
-    <div class="trig-line"></div>
-    <div class="trig-text">实践应用 · 书友原声</div>
-    <div class="trig-icon">+</div>
+  <div class="toggle-bar" onclick="toggleSection(this)">
+    <span class="toggle-label">实践应用 · 书友原声</span>
+    <span class="toggle-icon">+</span>
   </div>
-  <div class="expand-content" id="e4">
-    <div class="sec-apply">
-      <div class="sec-label" style="color:#9a8c78;">实 践 应 用</div>
-      <div class="apply-item">
-        <div class="apply-index">应用 01</div>
-        <div class="apply-headline">锻炼时加入高强度间歇。</div>
-        <div class="apply-body">别每天同一速度，偶尔冲刺到极限——HIIT 的效果远优于匀速有氧，这是凸性波动在身体层面的体现。</div>
-      </div>
-      <div class="apply-item">
-        <div class="apply-index">应用 02</div>
-        <div class="apply-headline">在稳定生活中主动引入新刺激和"小别"。</div>
-        <div class="apply-body">维持关系与热情的活力，需要间歇性的凸性冲击，而非每天均匀的陪伴——小别胜新婚是有数学基础的。</div>
-      </div>
-      <div class="apply-item">
-        <div class="apply-index">应用 03</div>
-        <div class="apply-headline">集中攻克新技能，而非每天零散刷 10 分钟。</div>
-        <div class="apply-body">间歇性深度比匀速浅水更有效——用"大冲击"替代"线性累积"，是学习上的凸性策略。</div>
-      </div>
+  <div class="expand-section">
+    <div class="expand-inner-header">
+      <div class="expand-title">实 践 应 用</div>
     </div>
-    <div class="sec-voices">
-      <div class="sec-label" style="color:#9a8c78;">书 友 原 声</div>
-      <div class="big-quote c1">
-        <div class="q-mark">"</div>
-        <div class="q-body">从来不拖延，偶尔拖延一次，用 deadline 刺激一下。</div>
-        <div class="q-name">— Dreamer</div>
-      </div>
-      <div class="big-quote c3">
-        <div class="q-mark">"</div>
-        <div class="q-body">风浪越大鱼越贵。小别胜新婚——这些民间智慧，其实都是凸性波动的日常版本。</div>
-        <div class="q-name">— 书友</div>
-      </div>
+    <div class="practice-item">
+      <div class="practice-num">应用 01</div>
+      <div class="practice-title">锻炼时加入高强度间歇。</div>
+      <div class="practice-desc">别每天同一速度，偶尔冲刺到极限——HIIT 的效果远优于匀速有氧，这是凸性波动在身体层面的体现。</div>
+    </div>
+    <div class="practice-item">
+      <div class="practice-num">应用 02</div>
+      <div class="practice-title">在稳定生活中主动引入新刺激和"小别"。</div>
+      <div class="practice-desc">维持关系与热情的活力，需要间歇性的凸性冲击，而非每天均匀的陪伴——小别胜新婚是有数学基础的。</div>
+    </div>
+    <div class="practice-item">
+      <div class="practice-num">应用 03</div>
+      <div class="practice-title">集中攻克新技能，而非每天零散刷 10 分钟。</div>
+      <div class="practice-desc">间歇性深度比匀速浅水更有效——用"大冲击"替代"线性累积"，是学习上的凸性策略。</div>
+    </div>
+    <hr class="voice-divider">
+    <div class="voice-label">书 友 原 声</div>
+    <div class="voice-card">
+      <div class="voice-deco">"</div>
+      <div class="voice-text">从来不拖延，偶尔拖延一次，用 deadline 刺激一下。</div>
+      <div class="voice-author">— Dreamer</div>
+    </div>
+    <div class="voice-card">
+      <div class="voice-deco">"</div>
+      <div class="voice-text">风浪越大鱼越贵。小别胜新婚——这些民间智慧，其实都是凸性波动的日常版本。</div>
+      <div class="voice-author">— 书友</div>
     </div>
   </div>
 
@@ -519,37 +472,35 @@ body {
       <div class="case-text"><strong>创业的凸性逻辑：</strong>不停失败，但只要没有破产、保持在牌桌上，就仍有机会——"不被消灭"比"精准择时"更重要。</div>
     </div>
   </div>
-  <div class="expand-trigger" onclick="toggle(this,'e5')">
-    <div class="trig-line"></div>
-    <div class="trig-text">实践应用 · 书友原声</div>
-    <div class="trig-icon">+</div>
+  <div class="toggle-bar" onclick="toggleSection(this)">
+    <span class="toggle-label">实践应用 · 书友原声</span>
+    <span class="toggle-icon">+</span>
   </div>
-  <div class="expand-content" id="e5">
-    <div class="sec-apply">
-      <div class="sec-label" style="color:#9a8c78;">实 践 应 用</div>
-      <div class="apply-item">
-        <div class="apply-index">应用 01</div>
-        <div class="apply-headline">配置资产时寻找"下行有限、上行无限"的结构。</div>
-        <div class="apply-body">用可承受的小仓位博高弹性机会——这是凸性结构在投资上的直接应用，凯利公式告诉我们永远不要 all in。</div>
-      </div>
-      <div class="apply-item">
-        <div class="apply-index">应用 02</div>
-        <div class="apply-headline">创业或重大决策时，把"不被消灭"放在第一位。</div>
-        <div class="apply-body">保持继续参与重复博弈的能力，比单次赢得更多更重要——活着才能继续校准。</div>
-      </div>
-      <div class="apply-item">
-        <div class="apply-index">应用 03</div>
-        <div class="apply-headline">评估机会时问：失败能承受吗？成功是倍数级吗？</div>
-        <div class="apply-body">两个问题同时成立，才是真正的凸性机会——不对称性是判断的核心标准。</div>
-      </div>
+  <div class="expand-section">
+    <div class="expand-inner-header">
+      <div class="expand-title">实 践 应 用</div>
     </div>
-    <div class="sec-voices">
-      <div class="sec-label" style="color:#9a8c78;">书 友 原 声</div>
-      <div class="big-quote c4">
-        <div class="q-mark">"</div>
-        <div class="q-body">你可以很愚蠢疯狂地犯错，但只要用反脆弱分析，最终依然能赢。</div>
-        <div class="q-name">— 书友</div>
-      </div>
+    <div class="practice-item">
+      <div class="practice-num">应用 01</div>
+      <div class="practice-title">配置资产时寻找"下行有限、上行无限"的结构。</div>
+      <div class="practice-desc">用可承受的小仓位博高弹性机会——这是凸性结构在投资上的直接应用，凯利公式告诉我们永远不要 all in。</div>
+    </div>
+    <div class="practice-item">
+      <div class="practice-num">应用 02</div>
+      <div class="practice-title">创业或重大决策时，把"不被消灭"放在第一位。</div>
+      <div class="practice-desc">保持继续参与重复博弈的能力，比单次赢得更多更重要——活着才能继续校准。</div>
+    </div>
+    <div class="practice-item">
+      <div class="practice-num">应用 03</div>
+      <div class="practice-title">评估机会时问：失败能承受吗？成功是倍数级吗？</div>
+      <div class="practice-desc">两个问题同时成立，才是真正的凸性机会——不对称性是判断的核心标准。</div>
+    </div>
+    <hr class="voice-divider">
+    <div class="voice-label">书 友 原 声</div>
+    <div class="voice-card">
+      <div class="voice-deco">"</div>
+      <div class="voice-text">你可以很愚蠢疯狂地犯错，但只要用反脆弱分析，最终依然能赢。</div>
+      <div class="voice-author">— 书友</div>
     </div>
   </div>
 
@@ -574,37 +525,35 @@ body {
       <div class="case-text"><strong>休谟哲学基础：</strong>归纳法不可靠，因果并不存在——黑天鹅的哲学根源，是对理性主义的批判。世界不可预测，所以凸性结构内置容错比精准预测更重要。</div>
     </div>
   </div>
-  <div class="expand-trigger" onclick="toggle(this,'e6')">
-    <div class="trig-line"></div>
-    <div class="trig-text">实践应用 · 书友原声</div>
-    <div class="trig-icon">+</div>
+  <div class="toggle-bar" onclick="toggleSection(this)">
+    <span class="toggle-label">实践应用 · 书友原声</span>
+    <span class="toggle-icon">+</span>
   </div>
-  <div class="expand-content" id="e6">
-    <div class="sec-apply">
-      <div class="sec-label" style="color:#9a8c78;">实 践 应 用</div>
-      <div class="apply-item">
-        <div class="apply-index">应用 01</div>
-        <div class="apply-headline">与其预测周期，不如找出"底层慢变量"。</div>
-        <div class="apply-body">出生率、技术渗透率、能源结构等可观察的结构性指标，是比周期预测更可靠的决策依据。</div>
-      </div>
-      <div class="apply-item">
-        <div class="apply-index">应用 02</div>
-        <div class="apply-headline">对已经"认知稳定"的事物保持警觉。</div>
-        <div class="apply-body">稳定感本身是脆弱性累积的信号——正是习以为常之处，黑天鹅破坏力最大。</div>
-      </div>
-      <div class="apply-item">
-        <div class="apply-index">应用 03</div>
-        <div class="apply-headline">尝试切换视角：如果把主体换成"AI/数字系统"，判断还成立吗？</div>
-        <div class="apply-body">视角的切换能揭示被常规思维遮蔽的结构性机会——这本身就是一种反脆弱的认知工具。</div>
-      </div>
+  <div class="expand-section">
+    <div class="expand-inner-header">
+      <div class="expand-title">实 践 应 用</div>
     </div>
-    <div class="sec-voices">
-      <div class="sec-label" style="color:#9a8c78;">书 友 原 声</div>
-      <div class="big-quote c2">
-        <div class="q-mark">"</div>
-        <div class="q-body">预测不是主题，应对才是。</div>
-        <div class="q-name">— 书友</div>
-      </div>
+    <div class="practice-item">
+      <div class="practice-num">应用 01</div>
+      <div class="practice-title">与其预测周期，不如找出"底层慢变量"。</div>
+      <div class="practice-desc">出生率、技术渗透率、能源结构等可观察的结构性指标，是比周期预测更可靠的决策依据。</div>
+    </div>
+    <div class="practice-item">
+      <div class="practice-num">应用 02</div>
+      <div class="practice-title">对已经"认知稳定"的事物保持警觉。</div>
+      <div class="practice-desc">稳定感本身是脆弱性累积的信号——正是习以为常之处，黑天鹅破坏力最大。</div>
+    </div>
+    <div class="practice-item">
+      <div class="practice-num">应用 03</div>
+      <div class="practice-title">尝试切换视角：如果把主体换成"AI/数字系统"，判断还成立吗？</div>
+      <div class="practice-desc">视角的切换能揭示被常规思维遮蔽的结构性机会——这本身就是一种反脆弱的认知工具。</div>
+    </div>
+    <hr class="voice-divider">
+    <div class="voice-label">书 友 原 声</div>
+    <div class="voice-card">
+      <div class="voice-deco">"</div>
+      <div class="voice-text">预测不是主题，应对才是。</div>
+      <div class="voice-author">— 书友</div>
     </div>
   </div>
 
@@ -625,14 +574,14 @@ body {
 </div>
 
 <script>
-function toggle(trigger, id) {
-  const content = document.getElementById(id);
-  const icon = trigger.querySelector('.trig-icon');
-  const label = trigger.querySelector('.trig-text');
-  const isOpen = content.classList.contains('open');
-  content.classList.toggle('open', !isOpen);
+function toggleSection(bar) {
+  const section = bar.nextElementSibling;
+  const icon = bar.querySelector('.toggle-icon');
+  const isOpen = section.classList.contains('visible');
+  section.classList.toggle('visible', !isOpen);
   icon.classList.toggle('open', !isOpen);
-  label.textContent = isOpen ? '实践应用 · 书友原声' : '收起';
+  bar.classList.toggle('active', !isOpen);
+  bar.querySelector('.toggle-label').textContent = isOpen ? '实践应用 · 书友原声' : '收起';
 }
 </script>
 </body>

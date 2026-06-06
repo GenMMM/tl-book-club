@@ -142,15 +142,11 @@ body {
 .expand-section.visible { display: block; }
 
 .expand-inner-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
   padding: 12px 0 10px;
   border-bottom: 0.5px solid #d8d0c0;
   margin-bottom: 10px;
 }
 .expand-title { font-size: 11px; color: #8a7a60; letter-spacing: 0.18em; }
-.expand-close { font-size: 11px; color: #c9a227; cursor: pointer; }
 
 .practice-item { padding: 12px 0 12px 12px; border-bottom: 0.5px solid #d8d0c0; }
 .practice-item:last-of-type { border-bottom: none; }
@@ -263,7 +259,6 @@ body {
   <div class="expand-section">
     <div class="expand-inner-header">
       <div class="expand-title">实 践 应 用</div>
-      <div class="expand-close" onclick="closeSection(this)">收起 ×</div>
     </div>
     <div class="practice-item">
       <div class="practice-num">应用 01</div>
@@ -323,7 +318,6 @@ body {
   <div class="expand-section">
     <div class="expand-inner-header">
       <div class="expand-title">实 践 应 用</div>
-      <div class="expand-close" onclick="closeSection(this)">收起 ×</div>
     </div>
     <div class="practice-item">
       <div class="practice-num">应用 01</div>
@@ -383,7 +377,6 @@ body {
   <div class="expand-section">
     <div class="expand-inner-header">
       <div class="expand-title">实 践 应 用</div>
-      <div class="expand-close" onclick="closeSection(this)">收起 ×</div>
     </div>
     <div class="practice-item">
       <div class="practice-num">应用 01</div>
@@ -443,7 +436,6 @@ body {
   <div class="expand-section">
     <div class="expand-inner-header">
       <div class="expand-title">实 践 应 用</div>
-      <div class="expand-close" onclick="closeSection(this)">收起 ×</div>
     </div>
     <div class="practice-item">
       <div class="practice-num">应用 01</div>
@@ -503,7 +495,6 @@ body {
   <div class="expand-section">
     <div class="expand-inner-header">
       <div class="expand-title">实 践 应 用</div>
-      <div class="expand-close" onclick="closeSection(this)">收起 ×</div>
     </div>
     <div class="practice-item">
       <div class="practice-num">应用 01</div>
@@ -563,7 +554,6 @@ body {
   <div class="expand-section">
     <div class="expand-inner-header">
       <div class="expand-title">实 践 应 用</div>
-      <div class="expand-close" onclick="closeSection(this)">收起 ×</div>
     </div>
     <div class="practice-item">
       <div class="practice-num">应用 01</div>
@@ -616,14 +606,6 @@ function toggleSection(bar) {
   icon.classList.toggle('open', !isOpen);
   bar.classList.toggle('active', !isOpen);
   bar.querySelector('.toggle-label').textContent = isOpen ? '实践应用 · 书友原声' : '收起';
-}
-function closeSection(btn) {
-  const section = btn.closest('.expand-section');
-  const bar = section.previousElementSibling;
-  section.classList.remove('visible');
-  bar.classList.remove('active');
-  bar.querySelector('.toggle-icon').classList.remove('open');
-  bar.querySelector('.toggle-label').textContent = '实践应用 · 书友原声';
 }
 </script>
 </body>
