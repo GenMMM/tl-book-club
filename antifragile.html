@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>反脆弱 · TL Book Club</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;700&family=Noto+Sans+SC:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  background: #f5f3ef;
+  font-family: 'Noto Sans SC', sans-serif;
+  color: #2a2218;
+  padding: 24px 16px 60px;
+}
+
+.page {
+  max-width: 600px;
+  margin: 0 auto;
+  background: #faf9f6;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+/* ── Back nav ── */
+.back-nav {
+  padding: 16px 28px 0;
+}
+
+.back-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 11px;
+  color: #9a8c78;
+  text-decoration: none;
+  letter-spacing: 0.08em;
+  transition: color 0.15s;
+}
+
+.back-link:hover { color: #6b6358; }
+
+.back-arrow {
+  font-size: 13px;
+  line-height: 1;
+}
+
+/* ── Header ── */
+.header {
+  padding: 24px 28px 28px;
+  border-bottom: 0.5px solid #e0ddd6;
+}
+
+.book-label {
+  font-size: 10px;
+  color: #b0a898;
+  letter-spacing: 0.2em;
+  margin-bottom: 12px;
+}
+
+.book-title {
+  font-family: 'Noto Serif SC', serif;
+  font-size: 30px;
+  font-weight: 700;
+  color: #1a1816;
+  line-height: 1.3;
+  margin-bottom: 6px;
+}
+
+.book-author {
+  font-size: 12px;
+  color: #9a8c78;
+  letter-spacing: 0.06em;
+  margin-bottom: 20px;
+}
+
+.book-core {
+  font-family: 'Noto Serif SC', serif;
+  font-size: 14px;
+  color: #4a453e;
+  line-height: 1.9;
+  padding: 14px 16px;
+  background: #f0ece3;
+  border-radius: 6px;
+  border-left: 3px solid #c9a227;
+  margin-bottom: 20px;
+}
+
+.book-stats {
+  display: flex;
+  gap: 20px;
+  font-size: 11px;
+  color: #9a8c78;
+}
+
+.stat {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  letter-spacing: 0.04em;
+}
+
+.stat-dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: #c9a227;
+  flex-shrink: 0;
+}
+
+/* ── Section label ── */
+.section-label {
+  padding: 22px 28px 14px;
+  font-size: 9px;
+  color: #b0a898;
+  letter-spacing: 0.25em;
+  border-bottom: 0.5px solid #e0ddd6;
+}
+
+/* ── Session list ── */
+.session-list {
+  padding: 16px 20px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* ── Session card ── */
+.session-card {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+  background: #fff;
+  border: 0.5px solid #e0ddd6;
+  border-radius: 8px;
+  padding: 16px 16px 14px;
+  transition: transform 0.16s ease, box-shadow 0.16s ease;
+  position: relative;
+}
+
+.session-card:active { transform: scale(0.98); }
+
+@media (hover: hover) {
+  .session-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 18px rgba(42,34,24,0.09);
+  }
+}
+
+.card-top {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  margin-bottom: 8px;
+}
+
+.card-chapter {
+  font-size: 10px;
+  color: #b0a898;
+  letter-spacing: 0.1em;
+}
+
+.card-date {
+  font-size: 10px;
+  color: #b0a898;
+  letter-spacing: 0.04em;
+}
+
+.card-title {
+  font-family: 'Noto Serif SC', serif;
+  font-size: 16px;
+  font-weight: 700;
+  color: #1a1816;
+  line-height: 1.5;
+  margin-bottom: 12px;
+  padding-right: 24px;
+}
+
+.card-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.tag {
+  font-size: 10px;
+  color: #6b6358;
+  background: #f0ece3;
+  border-radius: 3px;
+  padding: 3px 8px;
+  letter-spacing: 0.05em;
+}
+
+.card-arrow {
+  position: absolute;
+  right: 16px;
+  bottom: 16px;
+  font-size: 14px;
+  color: #c9a227;
+  line-height: 1;
+}
+
+/* ── Footer ── */
+.footer {
+  padding: 20px 28px;
+  border-top: 0.5px solid #e0ddd6;
+  font-size: 10px;
+  color: #b0a898;
+  text-align: center;
+  line-height: 1.8;
+}
+
+.footer-logo {
+  font-family: 'Noto Serif SC', serif;
+  font-size: 13px;
+  color: #6b6358;
+  margin-bottom: 4px;
+}
+</style>
+</head>
+<body>
+<div class="page">
+
+  <div class="back-nav">
+    <a class="back-link" href="index.html">
+      <span class="back-arrow">←</span>书架
+    </a>
+  </div>
+
+  <!-- 书籍头部 -->
+  <div class="header">
+    <div class="book-label">共 读 书 目</div>
+    <div class="book-title">反脆弱</div>
+    <div class="book-author">纳西姆·尼古拉斯·塔勒布</div>
+    <div class="book-core">
+      脆弱的反义词不是坚韧，而是反脆弱——能从波动、压力与不确定中获益，变得更强。
+    </div>
+    <div class="book-stats">
+      <div class="stat">
+        <div class="stat-dot"></div>
+        共 6 场活动
+      </div>
+      <div class="stat">
+        <div class="stat-dot"></div>
+        2026 年 5 月开始
+      </div>
+    </div>
+  </div>
+
+  <!-- 共读记录 -->
+  <div class="section-label">共 读 记 录</div>
+
+  <div class="session-list">
+
+    <!-- 第20-21章 -->
+    <a class="session-card" href="antifragile-20-21.html">
+      <div class="card-top">
+        <div class="card-chapter">第 20–21 章</div>
+        <div class="card-date">2026-06-03</div>
+      </div>
+      <div class="card-title">先做减法，再做加法</div>
+      <div class="card-tags">
+        <span class="tag">否定法</span>
+        <span class="tag">林迪效应</span>
+        <span class="tag">干预代价</span>
+      </div>
+      <div class="card-arrow">→</div>
+    </a>
+
+    <!-- 第16-17章 -->
+    <a class="session-card" href="antifragile-16-17.html">
+      <div class="card-top">
+        <div class="card-chapter">第 16–17 章</div>
+        <div class="card-date">2026-05-20</div>
+      </div>
+      <div class="card-title">肥托尼的智慧——实践者凭什么胜过理论家</div>
+      <div class="card-tags">
+        <span class="tag">实践智慧</span>
+        <span class="tag">知识的傲慢</span>
+        <span class="tag">脆弱转移</span>
+      </div>
+      <div class="card-arrow">→</div>
+    </a>
+
+  </div>
+
+  <div class="footer">
+    <div class="footer-logo">TL Book Club</div>
+    《反脆弱》共读专题
+  </div>
+
+</div>
+</body>
+</html>

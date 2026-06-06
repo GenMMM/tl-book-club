@@ -1,0 +1,663 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>先做减法，再做加法 · TL Book Club</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;700&family=Noto+Sans+SC:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  background: #f5f3ef;
+  font-family: 'Noto Sans SC', sans-serif;
+  color: #2a2218;
+  padding: 24px 16px 60px;
+}
+
+.page {
+  max-width: 600px;
+  margin: 0 auto;
+  background: #faf9f6;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+/* ── 顶部 ── */
+.header {
+  padding: 36px 28px 28px;
+  border-bottom: 0.5px solid #e0ddd6;
+}
+.header-meta {
+  font-size: 11px;
+  color: #9a8c78;
+  letter-spacing: 0.12em;
+  margin-bottom: 14px;
+}
+.header-title {
+  font-family: 'Noto Serif SC', serif;
+  font-size: 26px;
+  font-weight: 700;
+  color: #1a1816;
+  line-height: 1.4;
+  margin-bottom: 16px;
+}
+.header-sub {
+  font-family: 'Noto Serif SC', serif;
+  font-size: 13px;
+  color: #6b6358;
+  line-height: 1.9;
+  margin-bottom: 18px;
+}
+.header-stats {
+  display: flex;
+  gap: 16px;
+  font-size: 11px;
+  color: #b0a898;
+}
+.stat { display: flex; align-items: center; gap: 4px; }
+
+/* ── 分割线 ── */
+.divider {
+  margin: 22px 28px;
+  border: none;
+  border-top: 0.5px solid #e0ddd6;
+}
+
+/* ── 问题块 ── */
+.q-block { padding: 0 28px; }
+.q-num {
+  font-size: 10px;
+  color: #b0a898;
+  letter-spacing: 0.1em;
+  margin-bottom: 6px;
+}
+.q-title {
+  font-family: 'Noto Serif SC', serif;
+  font-size: 16px;
+  font-weight: 700;
+  color: #1a1816;
+  line-height: 1.6;
+  margin-bottom: 10px;
+}
+.q-lead {
+  font-size: 12px;
+  color: #6b6358;
+  line-height: 1.9;
+  margin-bottom: 16px;
+}
+
+/* ── 案例 ── */
+.cases-wrap { margin: 0 28px 0; }
+.case-item {
+  display: flex;
+  gap: 12px;
+  padding: 10px 14px;
+  background: #f0ece3;
+  border-radius: 6px;
+  margin-bottom: 6px;
+}
+.case-bar {
+  width: 3px;
+  border-radius: 2px;
+  background: #c9a227;
+  flex-shrink: 0;
+  margin: 3px 0;
+}
+.case-text {
+  font-size: 12px;
+  color: #4a453e;
+  line-height: 1.8;
+}
+.case-text strong { color: #2a2218; font-weight: 500; }
+
+/* ── 展开触发 ── */
+.expand-trigger {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 16px 28px;
+  cursor: pointer;
+}
+.trig-line { flex: 1; height: 0.5px; background: #d8d4cc; }
+.trig-text {
+  font-size: 10px;
+  color: #c9a227;
+  letter-spacing: 0.08em;
+  white-space: nowrap;
+  user-select: none;
+  font-weight: 500;
+}
+.trig-icon {
+  font-size: 14px;
+  color: #c9a227;
+  transition: transform 0.3s;
+  display: inline-block;
+  line-height: 1;
+  user-select: none;
+}
+.trig-icon.open { transform: rotate(45deg); }
+
+/* ── 展开内容 ── */
+.expand-content { display: none; }
+.expand-content.open { display: block; }
+
+/* ── 生活应用 ── */
+.sec-apply {
+  background: #e8e2d8;
+  padding: 22px 24px;
+}
+.sec-label {
+  font-size: 9px;
+  letter-spacing: 0.2em;
+  margin-bottom: 16px;
+}
+.apply-item {
+  padding: 14px 0;
+  border-bottom: 0.5px solid #d4cec4;
+}
+.apply-item:last-child { border-bottom: none; padding-bottom: 0; }
+.apply-index {
+  font-size: 9px;
+  color: #9a8c78;
+  letter-spacing: 0.1em;
+  margin-bottom: 6px;
+}
+.apply-headline {
+  font-family: 'Noto Serif SC', serif;
+  font-size: 15px;
+  font-weight: 700;
+  color: #2a2218;
+  line-height: 1.6;
+  margin-bottom: 5px;
+}
+.apply-body {
+  font-size: 11px;
+  color: #7a7060;
+  line-height: 1.9;
+}
+
+/* ── 书友原声 ── */
+.sec-voices {
+  background: #faf9f6;
+  padding: 20px 24px;
+}
+.big-quote {
+  padding: 16px 16px;
+  margin-bottom: 10px;
+  border-radius: 6px;
+  position: relative;
+  overflow: hidden;
+}
+.big-quote:last-child { margin-bottom: 0; }
+.big-quote.c1 { background: #ede8d0; }
+.big-quote.c2 { background: #dde8da; }
+.big-quote.c3 { background: #e4d8cc; }
+.big-quote.c4 { background: #dde0e8; }
+.q-mark {
+  font-family: 'Noto Serif SC', serif;
+  font-size: 48px;
+  line-height: 0.8;
+  font-weight: 700;
+  opacity: 0.1;
+  position: absolute;
+  top: 8px;
+  right: 10px;
+  color: #3a3020;
+  user-select: none;
+}
+.q-body {
+  font-family: 'Noto Serif SC', serif;
+  font-size: 13px;
+  line-height: 1.8;
+  position: relative;
+  color: #2a2218;
+  margin-bottom: 8px;
+}
+.q-name {
+  font-size: 10px;
+  opacity: 0.45;
+  position: relative;
+  color: #2a2218;
+  font-weight: 500;
+}
+
+/* ── 底部 ── */
+.footer {
+  padding: 28px;
+  border-top: 0.5px solid #e0ddd6;
+  font-size: 10px;
+  color: #b0a898;
+  text-align: center;
+  line-height: 1.8;
+}
+.footer-logo { font-family: 'Noto Serif SC', serif; font-size: 13px; color: #6b6358; margin-bottom: 6px; }
+
+/* ── Top nav ── */
+.top-nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 28px;
+  border-bottom: 0.5px solid #e0ddd6;
+}
+.nav-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 11px;
+  color: #9a8c78;
+  text-decoration: none;
+  letter-spacing: 0.06em;
+  transition: color 0.15s;
+}
+.nav-link:hover { color: #6b6358; }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <nav class="top-nav">
+    <a class="nav-link" href="antifragile.html">← 返回</a>
+    <a class="nav-link" href="index.html">书架</a>
+  </nav>
+
+  <!-- 顶部标题 -->
+  <div class="header">
+    <div class="header-meta">《反脆弱》· 第20–21章</div>
+    <div class="header-title">先做减法，<br>再做加法</div>
+    <div class="header-sub">人类本能偏向「添加」，但真实世界要求我们先「减去」。减法之所以更可靠，是因为它经过了时间的反复过滤。</div>
+    <div class="header-stats">
+      <div class="stat">📅 2026 年 6 月 3 日</div>
+      <div class="stat">👥 11 位书友</div>
+    </div>
+  </div>
+
+  <!-- Q1 -->
+  <hr class="divider">
+  <div class="q-block">
+    <div class="q-num">问题一 / 六</div>
+    <div class="q-title">否定法——为什么「知道不是什么」比「知道是什么」更有力量？</div>
+    <div class="q-lead">先移除虚假的、脆弱的、不必要的东西，再考虑添加新事物。识别糟糕的想法，远比寻找完美答案更可靠。</div>
+  </div>
+  <div class="cases-wrap">
+    <div class="case-item">
+      <div class="case-bar"></div>
+      <div class="case-text"><strong>证伪的力量：</strong>无数只白天鹅无法证明「所有天鹅是白色的」，一只黑天鹅就能推翻全部命题——证伪只需一个反例，证实需要无穷个证据。</div>
+    </div>
+    <div class="case-item">
+      <div class="case-bar"></div>
+      <div class="case-text"><strong>决策陷阱：</strong>能列出很多小理由时，恰恰要警惕——这往往是在为结论做合理化，而非真正相信这个决定。坚韧的决策只需要一个主导理由。</div>
+    </div>
+  </div>
+  <div class="expand-trigger" onclick="toggle(this,'e1')">
+    <div class="trig-line"></div>
+    <div class="trig-text">实践应用 · 书友原声</div>
+    <div class="trig-icon">+</div>
+  </div>
+  <div class="expand-content" id="e1">
+    <div class="sec-apply">
+      <div class="sec-label" style="color:#9a8c78;">实 践 应 用</div>
+      <div class="apply-item">
+        <div class="apply-index">应用 01</div>
+        <div class="apply-headline">先问「有没有一个确定的理由让我不能做」。</div>
+        <div class="apply-body">能排除的先排除，剩下的才认真考虑。排除法比正向筛选更可靠。</div>
+      </div>
+      <div class="apply-item">
+        <div class="apply-index">应用 02</div>
+        <div class="apply-headline">亲密关系里，先明确「哪些是红线行为」。</div>
+        <div class="apply-body">踩了红线，再多加分也抵消不了。知道不能做什么，比知道怎么做更重要。</div>
+      </div>
+      <div class="apply-item">
+        <div class="apply-index">应用 03</div>
+        <div class="apply-headline">学前人失败，胜过学成功经验。</div>
+        <div class="apply-body">失败的原因往往是确定的，成功可能只是运气。先为不可胜，再谋可胜。</div>
+      </div>
+    </div>
+    <div class="sec-voices">
+      <div class="sec-label" style="color:#9a8c78;">书 友 原 声</div>
+      <div class="big-quote c1">
+        <div class="q-mark">"</div>
+        <div class="q-body">爱你需要很多很多的理由，但如果不爱，只需要一个就够了。</div>
+        <div class="q-name">— 书友</div>
+      </div>
+      <div class="big-quote c2">
+        <div class="q-mark">"</div>
+        <div class="q-body">你要确切定义一个东西是什么，是一件很困难的事情；但你很容易说出，它肯定不是什么——而且你会非常自信地说。</div>
+        <div class="q-name">— 书友</div>
+      </div>
+      <div class="big-quote c3">
+        <div class="q-mark">"</div>
+        <div class="q-body">你要知道哪些是伤害关系的动作，比知道怎么加强关系更重要。你累积了一千种加强关系的行为，一个破坏性的动作，关系就崩了。</div>
+        <div class="q-name">— 书友</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Q2 -->
+  <hr class="divider">
+  <div class="q-block">
+    <div class="q-num">问题二 / 六</div>
+    <div class="q-title">林迪效应——时间是反脆弱最好的检验吗？</div>
+    <div class="q-lead">对于非消耗性的东西，存在时间越长，预期寿命越长。存活本身就是韧性最强的证据。</div>
+  </div>
+  <div class="cases-wrap">
+    <div class="case-item">
+      <div class="case-bar"></div>
+      <div class="case-text"><strong>故宫 vs 现代大楼：</strong>故宫存在 600 年，未来存活概率远高于建成 30 年的现代建筑。时间就是压力测试，通过了才算数。</div>
+    </div>
+    <div class="case-item">
+      <div class="case-bar"></div>
+      <div class="case-text"><strong>趋新狂的盲区：</strong>人容易只关注「变化的那一小部分」，而忽视「不变的那大部分」。知识工作者的激励机制系统性地偏离了真理本身。</div>
+    </div>
+  </div>
+  <div class="expand-trigger" onclick="toggle(this,'e2')">
+    <div class="trig-line"></div>
+    <div class="trig-text">实践应用 · 书友原声</div>
+    <div class="trig-icon">+</div>
+  </div>
+  <div class="expand-content" id="e2">
+    <div class="sec-apply">
+      <div class="sec-label" style="color:#9a8c78;">实 践 应 用</div>
+      <div class="apply-item">
+        <div class="apply-index">应用 01</div>
+        <div class="apply-headline">选书、选方法、选工具时，优先经典。</div>
+        <div class="apply-body">新出的热门工具，给它留几年观察期，再决定是否深度投入。时间是最好的过滤器。</div>
+      </div>
+      <div class="apply-item">
+        <div class="apply-index">应用 02</div>
+        <div class="apply-headline">用「真实提升」检验新事物的价值。</div>
+        <div class="apply-body">问自己：它有没有真实提升我的生产力或生活质量？如果只是让你感到兴奋，那可能只是趋新狂。</div>
+      </div>
+      <div class="apply-item">
+        <div class="apply-index">应用 03</div>
+        <div class="apply-headline">专注做不会过时的底层需求。</div>
+        <div class="apply-body">人对效率、安全、陪伴、意义感的渴望，远比任何风口更持久。这才是经过林迪效应检验的方向。</div>
+      </div>
+    </div>
+    <div class="sec-voices">
+      <div class="sec-label" style="color:#9a8c78;">书 友 原 声</div>
+      <div class="big-quote c1">
+        <div class="q-mark">"</div>
+        <div class="q-body">贝佐斯说：明天什么会变，我很难判断；但我知道哪些不会变。我所有的决策都基于那些不变的东西。</div>
+        <div class="q-name">— 书友</div>
+      </div>
+      <div class="big-quote c3">
+        <div class="q-mark">"</div>
+        <div class="q-body">故宫之所以符合林迪效应，不是因为它是建筑，而是因为它背后有文化。迪士尼能存活百年，是因为讲了一个让大家认可的故事。</div>
+        <div class="q-name">— 书友</div>
+      </div>
+      <div class="big-quote c2">
+        <div class="q-mark">"</div>
+        <div class="q-body">潮水退去，才知道谁在裸泳。元宇宙退潮了，AI 还在涨——因为 AI 是真的提高了生产力，不是炒作。</div>
+        <div class="q-name">— 书友</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Q3 -->
+  <hr class="divider">
+  <div class="q-block">
+    <div class="q-num">问题三 / 六</div>
+    <div class="q-title">分形与自然生长——自下而上的系统为何更有韧性？</div>
+    <div class="q-lead">经亿万年微调的自然结构，是对真实世界压力的最优响应。靠人脚走出来的路，才经过了真实使用的验证。</div>
+  </div>
+  <div class="cases-wrap">
+    <div class="case-item">
+      <div class="case-bar"></div>
+      <div class="case-text"><strong>草坪小径：</strong>大学草坪上学生自然走出来的路，比设计师规划的环行路更持久——真实使用才是最好的测试。</div>
+    </div>
+    <div class="case-item">
+      <div class="case-bar"></div>
+      <div class="case-text"><strong>弯曲的河道：</strong>自然弯曲的河流能削弱洪峰冲击力；笔直的人工河道在洪水面前极为脆弱。效率背后往往是脆弱性。</div>
+    </div>
+  </div>
+  <div class="expand-trigger" onclick="toggle(this,'e3')">
+    <div class="trig-line"></div>
+    <div class="trig-text">实践应用 · 书友原声</div>
+    <div class="trig-icon">+</div>
+  </div>
+  <div class="expand-content" id="e3">
+    <div class="sec-apply">
+      <div class="sec-label" style="color:#9a8c78;">实 践 应 用</div>
+      <div class="apply-item">
+        <div class="apply-index">应用 01</div>
+        <div class="apply-headline">以问题和需求驱动学习，而非按章节推进。</div>
+        <div class="apply-body">遇到困惑再去找答案，比「系统地从头学」吸收得深。自然生长的路，才是真正走通的路。</div>
+      </div>
+      <div class="apply-item">
+        <div class="apply-index">应用 02</div>
+        <div class="apply-headline">团队管理：设定方向，给空间试错。</div>
+        <div class="apply-body">过度规划的组织就像笔直的河道，洪峰来了抵御力极弱。让好结果自然涌现，再提炼推广。</div>
+      </div>
+      <div class="apply-item">
+        <div class="apply-index">应用 03</div>
+        <div class="apply-headline">给自己的生活留冗余，不要排满。</div>
+        <div class="apply-body">看似浪费的缓冲，恰恰是你在压力下的弹性空间。收入来源只有一条线，是最危险的结构。</div>
+      </div>
+    </div>
+    <div class="sec-voices">
+      <div class="sec-label" style="color:#9a8c78;">书 友 原 声</div>
+      <div class="big-quote c2">
+        <div class="q-mark">"</div>
+        <div class="q-body">世上本没有路，走的人多了就有了路。靠人脚走出来的路，可能看起来效率低下，但它经过了真实使用的验证。</div>
+        <div class="q-name">— 书友</div>
+      </div>
+      <div class="big-quote c1">
+        <div class="q-mark">"</div>
+        <div class="q-body">越简洁高效的背后，往往是脆弱的。你剔除了所有冗余，也剔除了应对变化的缓冲。</div>
+        <div class="q-name">— 书友</div>
+      </div>
+      <div class="big-quote c3">
+        <div class="q-mark">"</div>
+        <div class="q-body">自己先读完、先思考，再让 AI 帮我优化——大脑越用越灵，你一上来就让 AI 总结，大脑就彻底懒掉了。</div>
+        <div class="q-name">— 书友</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Q4 -->
+  <hr class="divider">
+  <div class="q-block">
+    <div class="q-num">问题四 / 六</div>
+    <div class="q-title">干预的代价——什么时候「无为」胜过「有为」？</div>
+    <div class="q-lead">自然的东西默认安全，人工干预必须举证。干预的共同特征是收益立竿见影，而损害往往延迟数十年才显现。</div>
+  </div>
+  <div class="cases-wrap">
+    <div class="case-item">
+      <div class="case-bar"></div>
+      <div class="case-text"><strong>反式脂肪：</strong>数十年后才发现是癌症风险。收益当时看得见，隐性代价是几十年后的事。</div>
+    </div>
+    <div class="case-item">
+      <div class="case-bar"></div>
+      <div class="case-text"><strong>激励机制的陷阱：</strong>医生不治疗出事有法律责任，过度手术或开药造成长期副作用却无责任——系统性地推动了过度干预。</div>
+    </div>
+  </div>
+  <div class="expand-trigger" onclick="toggle(this,'e4')">
+    <div class="trig-line"></div>
+    <div class="trig-text">实践应用 · 书友原声</div>
+    <div class="trig-icon">+</div>
+  </div>
+  <div class="expand-content" id="e4">
+    <div class="sec-apply">
+      <div class="sec-label" style="color:#9a8c78;">实 践 应 用</div>
+      <div class="apply-item">
+        <div class="apply-index">应用 01</div>
+        <div class="apply-headline">轻微不适，优先观察，而非立刻用药。</div>
+        <div class="apply-body">只有当症状严重、不干预的风险明显大于干预副作用时，才积极介入。身体有自愈能力，先给它机会。</div>
+      </div>
+      <div class="apply-item">
+        <div class="apply-index">应用 02</div>
+        <div class="apply-headline">管理中，抵制「做点什么」的冲动。</div>
+        <div class="apply-body">下属问题还没到阈值时，过早介入会打断自然的试错和学习过程。等等，往往比出手更有效。</div>
+      </div>
+      <div class="apply-item">
+        <div class="apply-index">应用 03</div>
+        <div class="apply-headline">永远不要 all in，永远留退路。</div>
+        <div class="apply-body">凯利公式告诉我们：哪怕胜率很高，也不要押上全部。保持继续参与重复博弈的能力，比单次赢得更多更重要。</div>
+      </div>
+    </div>
+    <div class="sec-voices">
+      <div class="sec-label" style="color:#9a8c78;">书 友 原 声</div>
+      <div class="big-quote c3">
+        <div class="q-mark">"</div>
+        <div class="q-body">没有证据证明它有害，和有证据证明它无害——这是两件完全不同的事情。不能因为没有坏处的证据，就认为它一定没有坏处。</div>
+        <div class="q-name">— 书友</div>
+      </div>
+      <div class="big-quote c1">
+        <div class="q-mark">"</div>
+        <div class="q-body">如果让塔勒布来选，他肯定选中医——时间更长，干预更轻。小病先别动，让身体自愈。</div>
+        <div class="q-name">— 书友</div>
+      </div>
+      <div class="big-quote c2">
+        <div class="q-mark">"</div>
+        <div class="q-body">永远给自己留一个退路。凯利公式告诉我们：哪怕胜率很高，也不要 all in；因为重复博弈的前提是：你还活在牌桌上。</div>
+        <div class="q-name">— 书友</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Q5 -->
+  <hr class="divider">
+  <div class="q-block">
+    <div class="q-num">问题五 / 六</div>
+    <div class="q-title">AI 让人类更强大还是更脆弱？</div>
+    <div class="q-lead">两种视角同时成立。AI 是杠杆还是拐杖，取决于你如何使用它——掌握着用的是杠杆，离开它就走不了路的是拐杖。</div>
+  </div>
+  <div class="cases-wrap">
+    <div class="case-item">
+      <div class="case-bar"></div>
+      <div class="case-text"><strong>外卖的隐喻：</strong>外卖让越来越多的人失去做饭能力，AI 可能让我们失去独立思考和判断的能力——一旦断网，依赖者将极度脆弱。</div>
+    </div>
+    <div class="case-item">
+      <div class="case-bar"></div>
+      <div class="case-text"><strong>超级个体：</strong>AI 让单个个体能做到的事情大幅扩展。如果 AI 造成认知分化，多样性本身就是系统层面的反脆弱。</div>
+    </div>
+  </div>
+  <div class="expand-trigger" onclick="toggle(this,'e5')">
+    <div class="trig-line"></div>
+    <div class="trig-text">实践应用 · 书友原声</div>
+    <div class="trig-icon">+</div>
+  </div>
+  <div class="expand-content" id="e5">
+    <div class="sec-apply">
+      <div class="sec-label" style="color:#9a8c78;">实 践 应 用</div>
+      <div class="apply-item">
+        <div class="apply-index">应用 01</div>
+        <div class="apply-headline">建立自己的「AI 使用边界」。</div>
+        <div class="apply-body">哪些思考必须自己完成（判断、价值观、创意方向），哪些可以委托给 AI（整理、格式化、搜索）。不要把决定权交出去。</div>
+      </div>
+      <div class="apply-item">
+        <div class="apply-index">应用 02</div>
+        <div class="apply-headline">用 AI 时，主动制造摩擦。</div>
+        <div class="apply-body">读完书先自己总结，再用 AI 对比；写完文稿先自己审阅，再让 AI 优化。「先自己来」的习惯，保护的是你大脑的判断能力。</div>
+      </div>
+      <div class="apply-item">
+        <div class="apply-index">应用 03</div>
+        <div class="apply-headline">正问之后，再反问。</div>
+        <div class="apply-body">对 AI 给出的任何建议，额外问一句「请给出支持相反结论的例子」——这种校准习惯让你始终是决策者。</div>
+      </div>
+    </div>
+    <div class="sec-voices">
+      <div class="sec-label" style="color:#9a8c78;">书 友 原 声</div>
+      <div class="big-quote c1">
+        <div class="q-mark">"</div>
+        <div class="q-body">AI 可以让有能力的人能力几何级数放大，让思维懒惰的人大脑不停退化——就像《WALL·E》里的人类，坐在椅子上，什么都不做。</div>
+        <div class="q-name">— 书友</div>
+      </div>
+      <div class="big-quote c4">
+        <div class="q-mark">"</div>
+        <div class="q-body">限制你和 AI 合作的，不是 AI，是你不知道怎么描述你自己的需求——你甚至不知道你想要什么。</div>
+        <div class="q-name">— 书友</div>
+      </div>
+      <div class="big-quote c2">
+        <div class="q-mark">"</div>
+        <div class="q-body">我把 AI 当作狙击枪的准星，自己去调准它——正问，再反问，让它给出反面例子，然后校准我自己的判断。</div>
+        <div class="q-name">— 书友</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Q6 -->
+  <hr class="divider">
+  <div class="q-block">
+    <div class="q-num">问题六 / 六</div>
+    <div class="q-title">坚韧的决策——理由越多，决定越脆弱？</div>
+    <div class="q-lead">好的决策框架不是列 Pros &amp; Cons 的表格，而是回答一个问题——最坏的结果，我能接受吗？</div>
+  </div>
+  <div class="cases-wrap">
+    <div class="case-item">
+      <div class="case-bar"></div>
+      <div class="case-text"><strong>理由越多越要警惕：</strong>能列出很多小理由时，恰恰要问自己：我是在做真正的判断，还是在为既有结论找辩护？越多的数据，只会制造虚假的自信。</div>
+    </div>
+    <div class="case-item">
+      <div class="case-bar"></div>
+      <div class="case-text"><strong>不选择也是选择：</strong>长时间无法决定本身就是信号——当下条件还不成熟。一直在两难中犹豫，是时间帮你做出了选择，同时机会成本悄悄流走。</div>
+    </div>
+  </div>
+  <div class="expand-trigger" onclick="toggle(this,'e6')">
+    <div class="trig-line"></div>
+    <div class="trig-text">实践应用 · 书友原声</div>
+    <div class="trig-icon">+</div>
+  </div>
+  <div class="expand-content" id="e6">
+    <div class="sec-apply">
+      <div class="sec-label" style="color:#9a8c78;">实 践 应 用</div>
+      <div class="apply-item">
+        <div class="apply-index">应用 01</div>
+        <div class="apply-headline">做减法，找到那个核心理由。</div>
+        <div class="apply-body">逐一问自己「如果去掉这个理由，我的决定会变吗？」一直删，直到找到那个删掉就真的会改变决定的核心。</div>
+      </div>
+      <div class="apply-item">
+        <div class="apply-index">应用 02</div>
+        <div class="apply-headline">找到核心后，只问一件事：最坏的结果，我能接受吗？</div>
+        <div class="apply-body">能接受就做，义无反顾。不能接受就真的放下，不再内耗。这种心理弹性本身，就是反脆弱。</div>
+      </div>
+      <div class="apply-item">
+        <div class="apply-index">应用 03</div>
+        <div class="apply-headline">有时候，先开枪，再瞄准。</div>
+        <div class="apply-body">先把决定做了，再去慢慢修正——比一直权衡而不行动，更符合反脆弱的逻辑。活着最重要，活着才能继续校准。</div>
+      </div>
+    </div>
+    <div class="sec-voices">
+      <div class="sec-label" style="color:#9a8c78;">书 友 原 声</div>
+      <div class="big-quote c2">
+        <div class="q-mark">"</div>
+        <div class="q-body">所有矛盾里面，经常有一个最核心的矛盾。把所有理由做减法，找到它；然后问：最坏的结果我能接受吗？能接受就做，这种心理就是反脆弱的心理。</div>
+        <div class="q-name">— 书友</div>
+      </div>
+      <div class="big-quote c1">
+        <div class="q-mark">"</div>
+        <div class="q-body">如果你没有一个占据 80% 权重的主导理由，说明你的欲望本身还不够强，这个决定还没成熟——不用强迫自己现在做。</div>
+        <div class="q-name">— 书友</div>
+      </div>
+      <div class="big-quote c3">
+        <div class="q-mark">"</div>
+        <div class="q-body">有时候先开枪后瞄准，先把决定做了，再去慢慢修正——比一直权衡而不行动，更符合反脆弱的逻辑。</div>
+        <div class="q-name">— 书友</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 底部 -->
+  <div class="footer">
+    <div class="footer-logo">TL Book Club</div>
+    由 Claude Code 自动生成 · 《反脆弱》第20–21章
+  </div>
+
+</div>
+
+<script>
+function toggle(trigger, id) {
+  const content = document.getElementById(id);
+  const icon = trigger.querySelector('.trig-icon');
+  const label = trigger.querySelector('.trig-text');
+  const isOpen = content.classList.contains('open');
+  content.classList.toggle('open', !isOpen);
+  icon.classList.toggle('open', !isOpen);
+  label.textContent = isOpen ? '实践应用 · 书友原声' : '收起';
+}
+</script>
+</body>
+</html>
