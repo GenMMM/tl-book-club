@@ -117,7 +117,24 @@ body {
   color: #b0a898;
   letter-spacing: 0.25em;
   border-bottom: 0.5px solid #e0ddd6;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
+
+.sort-btn {
+  font-size: 9px;
+  color: #9a8c78;
+  background: #f0ece3;
+  border: none;
+  border-radius: 3px;
+  padding: 4px 9px;
+  cursor: pointer;
+  letter-spacing: 0.06em;
+  transition: color 0.15s, background 0.15s;
+  font-family: 'Noto Sans SC', sans-serif;
+}
+.sort-btn:hover { color: #6b6358; background: #e8e2d8; }
 
 /* ── Session list ── */
 .session-list {
@@ -250,7 +267,10 @@ body {
   </div>
 
   <!-- 共读记录 -->
-  <div class="section-label">共 读 记 录</div>
+  <div class="section-label">
+    <span>共 读 记 录</span>
+    <button id="sort-btn" class="sort-btn">倒序 ↓</button>
+  </div>
 
   <div class="session-list">
 
@@ -307,5 +327,27 @@ body {
   </div>
 
 </div>
+<script>
+(function () {
+  const list = document.querySelector('.session-list');
+  const btn  = document.getElementById('sort-btn');
+  let asc = false; // 默认倒序
+
+  function chapter(card) {
+    const m = card.querySelector('.card-chapter').textContent.match(/\d+/);
+    return m ? parseInt(m[0]) : 0;
+  }
+
+  function render() {
+    Array.from(list.children)
+      .sort((a, b) => asc ? chapter(a) - chapter(b) : chapter(b) - chapter(a))
+      .forEach(c => list.appendChild(c));
+    btn.textContent = asc ? '正序 ↑' : '倒序 ↓';
+  }
+
+  btn.addEventListener('click', function () { asc = !asc; render(); });
+  render(); // 初始渲染
+}());
+</script>
 </body>
 </html>
