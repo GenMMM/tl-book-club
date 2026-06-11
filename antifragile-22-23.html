@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>反脆弱 第22-23章 · TL Book Club</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;700&family=Noto+Sans+SC:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { background: #f5f3ef; font-family: 'Noto Sans SC', -apple-system, sans-serif; }
+.page { max-width: 600px; margin: 0 auto; background: #faf9f6; }
+.top-nav { display: flex; justify-content: space-between; padding: 14px 26px; font-size: 12px; border-bottom: 0.5px solid #ece8e0; }
+.top-nav a { color: #b0a898; text-decoration: none; }
+.header { padding: 26px 30px 22px; border-bottom: 0.5px solid #e8e4dc; }
+.header-meta { font-size: 11px; color: #9a8c78; letter-spacing: 0.12em; margin-bottom: 12px; }
+.header-title { font-size: 23px; font-weight: 700; color: #1a1816; line-height: 1.4; margin-bottom: 14px; }
+.header-sub { font-size: 13.5px; color: #6b6358; line-height: 1.95; }
+.header-stats { display: flex; gap: 14px; font-size: 11px; color: #b0a898; margin-top: 14px; }
+.q-block { padding: 22px 26px 0; }
+.q-num { font-size: 10px; color: #b8ac98; letter-spacing: 0.14em; margin-bottom: 6px; }
+.q-title { font-family: 'Noto Serif SC', serif; font-size: 18px; font-weight: 700; color: #1a1816; line-height: 1.55; }
+.concepts { padding: 14px 26px 0; display: flex; flex-direction: column; gap: 6px; }
+.c-row { font-size: 15px; color: #5a534a; line-height: 1.75; }
+.c-row b { color: #2a2218; font-weight: 700; }
+.insight { margin: 14px 26px 0; background: #f5efe1; border-radius: 8px; padding: 14px 18px; }
+.insight-text { font-size: 15px; font-weight: 300; color: #1a1816; line-height: 1.75; }
+.cases { padding: 14px 26px 0; display: flex; flex-direction: column; gap: 6px; }
+.case-item { display: flex; gap: 10px; align-items: baseline; }
+.case-dot { color: #c9a227; flex-shrink: 0; font-size: 16px; line-height: 1.5; }
+.case-text { font-size: 15px; color: #4a453e; line-height: 1.8; }
+.case-text strong { color: #2a2218; font-weight: 500; }
+.toggle-bar { display: flex; justify-content: flex-end; align-items: center; gap: 8px; padding: 13px 26px; cursor: pointer; margin-top: 8px; border-top: 0.5px solid #ece8e0; }
+.toggle-label { font-size: 12px; color: #c9a227; letter-spacing: 0.05em; }
+.toggle-icon { font-size: 15px; color: #c9a227; transition: transform 0.25s; line-height: 1; }
+.toggle-icon.open { transform: rotate(45deg); }
+.expand { display: none; background: #f1ede3; padding: 16px 36px 20px; }
+.expand.show { display: block; }
+.disc-p { font-size: 15px; color: #43403a; line-height: 1.95; margin-bottom: 11px; }
+.disc-p:last-of-type { margin-bottom: 0; }
+.method { margin-top: 14px; background: #f6efda; border-radius: 8px; padding: 12px 15px; }
+.method-label { font-size: 11px; color: #b08c1e; letter-spacing: 0.1em; margin-bottom: 6px; }
+.method-text { font-size: 15px; color: #4a3f24; line-height: 1.9; font-weight: 500; }
+.divider { margin: 0 26px; border: none; border-top: 0.5px solid #e8e4dc; }
+.end-block { padding: 22px 26px 0; }
+.end-title { font-size: 14px; font-weight: 700; color: #1a1816; letter-spacing: 0.05em; margin-bottom: 13px; }
+.end-item { display: flex; gap: 13px; padding: 5px 0; align-items: baseline; }
+.end-num { font-family: Georgia, serif; font-size: 13px; color: #c9a227; font-weight: 700; flex-shrink: 0; width: 16px; }
+.end-text { font-size: 15px; color: #45403a; line-height: 1.85; }
+.footer { padding: 22px 26px; margin-top: 8px; border-top: 0.5px solid #e8e4dc; text-align: center; }
+.footer-logo { font-size: 13px; color: #6b6358; margin-bottom: 5px; }
+.footer-sub { font-size: 10px; color: #b0a898; }
+@media (max-width: 600px) {
+  .insight-text { font-weight: 400; }
+}
+</style>
+</head>
+<body>
+<div class="page">
+
+  <div class="top-nav">
+    <a href="antifragile.html">← 返回专题页</a>
+    <a href="index.html">书架 →</a>
+  </div>
+
+  <div class="header">
+    <div class="header-meta">《反脆弱》第 22–23 章　·　2026-06-10</div>
+    <div class="header-title">脆弱性的转移是万恶之源</div>
+    <div class="header-sub">第22-23章是《反脆弱》的收尾之章，塔勒布将目光从市场与预测，移向人体与社会这两个最切近的战场。核心逻辑一以贯之：脆弱性的转移是万恶之源。无论是医生为了规避自身法律风险而造成的过度医疗，还是华尔街银行家收割利润却让纳税人承担亏损，本质上都是将风险和脆弱性转嫁给他人的行为。从向内看的"减法医疗"到向外看的"切身利害"，塔勒布给出了同一把钥匙：拒绝承担你不理解的隐性风险，并坚持让每个决策者把命绑在自己造的船上。</div>
+    <div class="header-stats">
+      <span>6 位参与者</span>
+      <span>·</span>
+      <span>6 个问题</span>
+    </div>
+  </div>
+
+  <!-- 问题 1 -->
+  <hr class="divider">
+  <div class="q-block">
+    <div class="q-num">问题 1 / 6</div>
+    <div class="q-title">天真干预的陷阱——何时该让医疗介入？</div>
+  </div>
+  <div class="concepts">
+    <div class="c-row"><b>医源性损伤（Iatrogenic Damage）</b>　因医疗干预本身（而非疾病）造成的伤害，往往是滞后且隐性的。</div>
+    <div class="c-row"><b>天真干预</b>　在不理解非线性效应的情况下，为了微小的可见收益而进行干预，却无意间承担了巨大的隐性风险。</div>
+    <div class="c-row"><b>凸性/凹性</b>　对健康人而言，医疗干预的副作用大于微小收益（凹性风险）；对重病患者，救命收益远超副作用（凸性回报）。</div>
+  </div>
+  <div class="insight">
+    <div class="insight-text">医疗干预对身体的影响是非线性的。轻症时，干预的副作用往往大于收益，过度使用止疼药、镇压孕吐的药物，实则削弱了身体本身的反脆弱机制；只有在病情危重时，医疗干预才真正具有凸性回报。身体是经过千万年演化的反脆弱系统，天真干预的本质，是为了微小的可见利益，承担隐性的巨大风险。</div>
+  </div>
+  <div class="cases">
+    <div class="case-item">
+      <span class="case-dot">·</span>
+      <div class="case-text"><strong>沙利度胺（反应停）畸形儿事件、己烯雌酚事件</strong>：为轻症孕妇用药，造成滞后且不可逆的巨大伤害。</div>
+    </div>
+    <div class="case-item">
+      <span class="case-dot">·</span>
+      <div class="case-text"><strong>作者父亲（肿瘤科医生）的格言</strong>：把所有药物倒进大海，对人类会更好。</div>
+    </div>
+  </div>
+  <div class="toggle-bar" onclick="toggleSection(this)">
+    <span class="toggle-label">实践讨论 · 方法提炼</span>
+    <span class="toggle-icon">+</span>
+  </div>
+  <div class="expand">
+    <div class="disc-p">讨论围绕"临界点难以判断"展开。医疗干预时机本身就是一个不确定事件，普通患者几乎无法提前判断轻症是否会恶化（Dreamer💫）。</div>
+    <div class="disc-p">良性肿瘤"开刀还是不开刀"是一个典型现实案例：同一病情，不同医院给出从"无需干预"到"建议切除"的截然不同方案，最终决策更像是患者心理层面的判断，而非纯粹的医学判断（Linda, 蒙蒙）。</div>
+    <div class="disc-p">眼科医生自己还戴眼镜却每天为他人做激光手术——这被认为是一种天然的"切身利害"检验信号（Dreamer💫）。</div>
+    <div class="method">
+      <div class="method-label">⚡ 方法提炼</div>
+      <div class="method-text">面对轻症，优先观察等待，让身体自愈；只有病情危重或有明确证据可能恶化时，才动用医疗干预。可参考的判断标准：同等情况下，这项干预对一个健康人是否净收益为负？</div>
+    </div>
+  </div>
+
+  <!-- 问题 2 -->
+  <hr class="divider">
+  <div class="q-block">
+    <div class="q-num">问题 2 / 6</div>
+    <div class="q-title">破解医患代理问题——如何找到真正为你着想的医生？</div>
+  </div>
+  <div class="concepts">
+    <div class="c-row"><b>代理人问题（Agency Problem）</b>　代理人（医生）的利益与委托人（患者）的利益不一致，导致代理人优先保护自身利益（收益、规避法律风险）而非最大化患者利益。</div>
+  </div>
+  <div class="insight">
+    <div class="insight-text">医生的激励结构与患者利益存在根本性错位：不干预而病情恶化，医生承担法律责任；过度干预即便有长期副作用，只要遵循指南，医生几乎没有责任。这使过度医疗成为一种"理性"的职业选择——与收入是否挂钩无关，法律风险机制本身就足以驱动过度干预。</div>
+  </div>
+  <div class="cases">
+    <div class="case-item">
+      <span class="case-dot">·</span>
+      <div class="case-text"><strong>书中启发法</strong>：永远不要问医生"我该怎么做"，而要问"如果你是我，你会怎么做"。</div>
+    </div>
+  </div>
+  <div class="toggle-bar" onclick="toggleSection(this)">
+    <span class="toggle-label">实践讨论 · 方法提炼</span>
+    <span class="toggle-icon">+</span>
+  </div>
+  <div class="expand">
+    <div class="disc-p">George分享了一位真正践行"视病人如己出"理念的全科医生，每次检查后都说"没什么事，回去吧"——推荐保守治疗本身承担着法律风险，愿意这么说恰好证明他内心笃定问题不严重（George）。</div>
+    <div class="disc-p">"货比三家"被认为是可行的策略：同一疾病咨询多位不同医生，推荐最保守方案的那位往往最值得信任（George）。疫苗发明者在自己身上先做临床试验、外科医生率先使用自己发明的术式，都是"切身利害"在医学中的理想体现（George）。</div>
+    <div class="method">
+      <div class="method-label">⚡ 方法提炼</div>
+      <div class="method-text">就医时问"如果你是我，你会怎么做"；多咨询几位医生，优先参考推荐最保守方案的那位；观察医生是否身体力行其建议（如眼科医生自己是否做过同类手术）。</div>
+    </div>
+  </div>
+
+  <!-- 问题 3 -->
+  <hr class="divider">
+  <div class="q-block">
+    <div class="q-num">问题 3 / 6</div>
+    <div class="q-title">否定法——用减法实现健康的反脆弱</div>
+  </div>
+  <div class="concepts">
+    <div class="c-row"><b>Via Negativa（否定法/减法法则）</b>　通过去除有害或不自然的东西，而非添加新的干预，来实现健康和强韧。</div>
+    <div class="c-row"><b>随机营养</b>　人类作为杂食动物，应避免过度规律、单一的饮食结构，适当引入随机性。</div>
+  </div>
+  <div class="insight">
+    <div class="insight-text">真正的健康策略不是"加法"（吃补品、尝试未经验证的新药、过度复杂的手术），而是"减法"：戒烟、适度断食、剔除精加工碳水化合物。现代寿命延长的真正功臣是消灭"致命的下行风险"（下水道卫生、青霉素、急救外科），而非无止境的每日服药。生命系统需要适度的压力源，被完全保护起来的生命反而最脆弱。</div>
+  </div>
+  <div class="cases">
+    <div class="case-item">
+      <span class="case-dot">·</span>
+      <div class="case-text"><strong>塔勒布的饮料原则</strong>：只喝有超过1000年历史的饮料（水、茶、咖啡、酒），拒绝橙汁——古人吃橙子时会同时摄入纤维，单喝橙汁是工业化的人造行为；许多现代甜橙品种本身就是近代人工培育的，远古并不存在。</div>
+    </div>
+    <div class="case-item">
+      <span class="case-dot">·</span>
+      <div class="case-text"><strong>集中营实验</strong>：适度的食物稀缺下，囚犯在第一阶段反而较少生病；进一步限食才会引发崩溃——说明轻度压力有益于反脆弱。</div>
+    </div>
+  </div>
+  <div class="toggle-bar" onclick="toggleSection(this)">
+    <span class="toggle-label">实践讨论 · 方法提炼</span>
+    <span class="toggle-icon">+</span>
+  </div>
+  <div class="expand">
+    <div class="disc-p">塔勒布的"1000年饮料"原则被认为有其内在逻辑：经时间验证的事物承担了漫长的试错成本，而非单靠几篇论文（蒙蒙）。</div>
+    <div class="disc-p">"不是一定要吃早饭"的观点与近期流行的《空腹力》相互印证，打破了"规律三餐是健康基础"的既有认知（Dreamer💫）。</div>
+    <div class="disc-p">中西医讨论出现明显分歧：有人认为中医疗效难以双盲验证（Dreamer💫）；有人认为两者应结合，哪个有效用哪个，并分享了中药当天见效的亲身经历（Linda）。书友的共识落脚于：减少精加工食品、贴近自然饮食的方向是可操作的，但不必像塔勒布那样走极端。</div>
+    <div class="method">
+      <div class="method-label">⚡ 方法提炼</div>
+      <div class="method-text">盘点生活中正在进行的"加法干预"（保健品、严格控制饮食、高频就医），评估每项的净收益是否为正；优先考虑去除坏习惯，而非增加新的干预措施。</div>
+    </div>
+  </div>
+
+  <!-- 问题 4 -->
+  <hr class="divider">
+  <div class="q-block">
+    <div class="q-num">问题 4 / 6</div>
+    <div class="q-title">幸福的否定法——消除不幸福，而非追求幸福</div>
+  </div>
+  <div class="insight">
+    <div class="insight-text">"追求幸福"本身是一个负面体验——"追求"这个动作不断强化了你当下"缺乏幸福"的感知。塔勒布认为幸福最好用否定的概念来定义：与其问"什么让我幸福"，不如问"什么让我不幸福，如何消除它"。这是否定法（Via Negativa）在心理层面的自然延伸。</div>
+  </div>
+  <div class="cases">
+    <div class="case-item">
+      <span class="case-dot">·</span>
+      <div class="case-text"><strong>塔勒布列举"不幸福"的来源</strong>：出版社编辑、通勤、异味、疼痛、在等候室看到杂志——消灭这些，比主动寻找快乐更有效。</div>
+    </div>
+  </div>
+  <div class="toggle-bar" onclick="toggleSection(this)">
+    <span class="toggle-label">实践讨论 · 方法提炼</span>
+    <span class="toggle-icon">+</span>
+  </div>
+  <div class="expand">
+    <div class="disc-p">George引用《The Subtle Art of Not Giving a F*ck》中的观点——"追求正面体验本身就是负面体验；接受负面体验这件事本身就是正面体验"，与塔勒布高度呼应（George）。</div>
+    <div class="disc-p">蒙蒙分享了"选碟困境"：每周只能租一张VCD时，越想挑到最好看的那部，越陷入纠结和失望；当标准从"挑最好的"变为"让周末有部电影看"，任何选择都可以满足期待（蒙蒙）。Linda观察到，极致快乐往往是"不期而遇"的，无法计划、无法复制（Linda）。</div>
+    <div class="disc-p">Dreamer💫类比到找伴侣：执着于"六边形战士"不如先明确自己不能接受什么，在基线之上就够了（Dreamer💫）。</div>
+    <div class="method">
+      <div class="method-label">⚡ 方法提炼</div>
+      <div class="method-text">当感到不快乐时，不要规划幸福，而是问：现在让我痛苦/无聊/焦虑的具体是什么？把消除这件事作为目标，而非寻找极致快乐。降低基准线往往比提升上限更有效。</div>
+    </div>
+  </div>
+
+  <!-- 问题 5 -->
+  <hr class="divider">
+  <div class="q-block">
+    <div class="q-num">问题 5 / 6</div>
+    <div class="q-title">切身利害矩阵——谁在转嫁风险，谁在承担风险？</div>
+  </div>
+  <div class="concepts">
+    <div class="c-row"><b>Skin in the Game（切身利害）</b>　行动者必须亲身承担其决策后果——"把命绑在上面"。</div>
+    <div class="c-row"><b>罗伯特·鲁宾问题（Robert Rubin Problem）</b>　赚钱时拿上亿分红不用担责，亏损时由纳税人兜底——以牺牲他人的脆弱，实现自己的反脆弱。</div>
+    <div class="c-row"><b>汉谟拉比法典</b>　3800年前的强制对称性机制——建筑师造房倒塌致屋主死亡，建筑师须偿命。用极端责任绑定来对付无法被安全检查发现的隐藏风险。</div>
+  </div>
+  <div class="insight">
+    <div class="insight-text">脆弱性大规模转嫁，根源在于现代系统解绑了"权力"与"承担后果"的对应关系。塔勒布将人分为三类：只拿收益不担风险的"吸血鬼"（官僚、空谈政客、部分银行家）；自负盈亏的"实干家"（商人、手工业者、个体创业者）；以及牺牲自我造福他人的"英雄"（战士、圣人、异见分子）。识别建议是否可信，核心在于：对方是否与自己的建议"同乘一架飞机"。</div>
+  </div>
+  <div class="cases">
+    <div class="case-item">
+      <span class="case-dot">·</span>
+      <div class="case-text"><strong>华尔街银行家</strong>：业绩好时拿高额分红，公司破产时由纳税人救助（Citibank案例）。</div>
+    </div>
+    <div class="case-item">
+      <span class="case-dot">·</span>
+      <div class="case-text"><strong>胖子托尼的两条启发法</strong>：千万不要登上没有飞行员的飞机；确保飞机上还有副驾驶。</div>
+    </div>
+    <div class="case-item">
+      <span class="case-dot">·</span>
+      <div class="case-text"><strong>航空公司规定</strong>：行李与乘客必须同时登机——防止乘客托运炸弹后自己不上飞机。</div>
+    </div>
+    <div class="case-item">
+      <span class="case-dot">·</span>
+      <div class="case-text"><strong>汉谟拉比法典</strong>：建筑师造房倒塌致屋主死亡须偿命，致其子死亡则建筑师之子偿命。</div>
+    </div>
+  </div>
+  <div class="toggle-bar" onclick="toggleSection(this)">
+    <span class="toggle-label">实践讨论 · 方法提炼</span>
+    <span class="toggle-icon">+</span>
+  </div>
+  <div class="expand">
+    <div class="disc-p">阿才将"英雄"和"吸血鬼"分别对应到系统层面：英雄以自身脆弱换来系统反脆弱，银行家以社会脆弱换来自身反脆弱（阿才）。蒙蒙以COVID吹哨人为例，认为他们正是典型的英雄——承担个体风险，增强了社会的反脆弱性（蒙蒙）。</div>
+    <div class="disc-p">George指出，仅靠减少经济激励还不够，法律责任机制本身就驱动了过度医疗，这是制度层面难以根除的问题（George）。在职场的讨论中，蒙蒙提出员工决策失误造成公司损失，算不算在转嫁风险？George认为公司平时获取了远超工资的利润，这种不对称本身也是一种对等（蒙蒙、George）。</div>
+    <div class="disc-p">Dreamer💫补充：企业咨询顾问只拿顾问费、不承担结果风险，是典型的"无切身利害的建议"，参考价值要大打折扣（Dreamer💫）。</div>
+    <div class="method">
+      <div class="method-label">⚡ 方法提炼</div>
+      <div class="method-text">过滤建议时，先问：这个人承担了多少他建议你做的事的后果？永远不要听信站着说话不腰疼的人。在职业上反思：自己是处于"切身利害"的实干区，还是在不知不觉间转嫁风险？</div>
+    </div>
+  </div>
+
+  <!-- 问题 6 -->
+  <hr class="divider">
+  <div class="q-block">
+    <div class="q-num">问题 6 / 6</div>
+    <div class="q-title">集体反脆弱的悖论——英雄的代价与生命的意义</div>
+  </div>
+  <div class="insight">
+    <div class="insight-text">集体的反脆弱性建立在个体的脆弱与牺牲之上。进化选择的不是个体寿命的最大化，而是种群基因的繁荣。那些"为他人承担成本的英雄"——战士、圣人、异见分子——以个体脆弱换取了系统反脆弱，这是从生物学到伦理学都成立的深层逻辑。对古人而言，最坏的结局不是死亡，而是平庸地死去；生命的意义在于它的质量和影响力，而非长度。</div>
+  </div>
+  <div class="toggle-bar" onclick="toggleSection(this)">
+    <span class="toggle-label">实践讨论 · 方法提炼</span>
+    <span class="toggle-icon">+</span>
+  </div>
+  <div class="expand">
+    <div class="disc-p">蒙蒙提出：读完全书，与其苦苦追求反脆弱，也许不如反思如何让自己的脆弱"有意义"——个体终归脆弱，但脆弱的方式可以选择（蒙蒙）。George从进化论角度补充：自然选择优化的是种群基因的繁荣，而非个体存活长度（George）。</div>
+    <div class="disc-p">阿才以抗日战争少年兵和大马哈鱼洄游为喻：个体可以通过对集体后代的奉献实现一种"虚拟永生"，整个中华民族的第三代、第四代都是那些牺牲者意义上的后代（阿才）。Dreamer💫引出"积德"的概念：英雄真正的意义在于其影响力能在时间中延续——教师通过学生、创作者通过作品，在世界中留下持久的"copies"（Dreamer💫）。</div>
+    <div class="disc-p">讨论最终延伸到存在主义：真正的脆弱不是死亡，而是虚无——感受不到自己存在、与世界断开连接的状态（蒙蒙）；而真正的反脆弱，是像西西弗斯一样不断与命运搏斗，活出存在的意义（Dreamer💫）。</div>
+    <div class="method">
+      <div class="method-label">⚡ 方法提炼</div>
+      <div class="method-text">与其规避所有风险追求长寿，不如思考：你的决策和行动是否在为某个更大的集体/系统增添反脆弱性？那些"死得有价值"的人，往往比"活得很久但平庸"的人留下更深的印记。关键问题：你正在建造的东西，在你离开后还会继续运作吗？</div>
+    </div>
+  </div>
+
+  <!-- 底层认知 -->
+  <hr class="divider">
+  <div class="end-block">
+    <div class="end-title">底层认知</div>
+    <div class="end-item">
+      <span class="end-num">01</span>
+      <span class="end-text">脆弱性的转移是道德问题：从医疗到金融，所有"只拿收益不担风险"的结构，都是在将脆弱性外包给社会，这是制度设计层面需要被纠正的根本性问题。</span>
+    </div>
+    <div class="end-item">
+      <span class="end-num">02</span>
+      <span class="end-text">否定法比加法更根本：在不确定的系统中，减少不自然的干预（医疗、饮食、心理），比主动添加保护更安全、更持久；"剔除坏的"往往比"增加好的"更有力。</span>
+    </div>
+    <div class="end-item">
+      <span class="end-num">03</span>
+      <span class="end-text">个体的真正理性是长期视角：单次博弈下，转嫁风险看似有利；但在重复博弈中，个人利益与集体利益会趋于一致——为集体释放善意，在长期中是最优策略。</span>
+    </div>
+    <div class="end-item">
+      <span class="end-num">04</span>
+      <span class="end-text">生命的反脆弱不在于寿命长度：真正的反脆弱是通过贡献、传播、牺牲，在时间维度上延续自己的影响力，而非被药物和保护延长的空洞生命。</span>
+    </div>
+  </div>
+
+  <!-- 延伸思考 -->
+  <hr class="divider" style="margin-top: 20px;">
+  <div class="end-block" style="padding-bottom: 8px;">
+    <div class="end-title">延伸思考</div>
+    <div class="end-item">
+      <span class="end-num">01</span>
+      <span class="end-text">如何设计制度，让"脆弱性转嫁者"真正付出代价，而不依赖个体道德自觉？</span>
+    </div>
+    <div class="end-item">
+      <span class="end-num">02</span>
+      <span class="end-text">在无法确定"轻症"与"危重"临界点的现实中，个体如何做出最优的医疗决策？</span>
+    </div>
+    <div class="end-item">
+      <span class="end-num">03</span>
+      <span class="end-text">当社会整体选择不合作（不婚、不育、不社交）时，这是一种个体的自我保护，还是集体系统走向脆弱的信号？</span>
+    </div>
+    <div class="end-item">
+      <span class="end-num">04</span>
+      <span class="end-text">"英雄"的牺牲是否需要被承认和补偿？当前"成王败寇"的制度逻辑，是否有可能被修正？</span>
+    </div>
+  </div>
+
+  <div class="footer">
+    <div class="footer-logo">TL Book Club</div>
+    <div class="footer-sub">《反脆弱》第22-23章</div>
+  </div>
+
+</div>
+<script>
+function toggleSection(bar) {
+  const section = bar.nextElementSibling;
+  const icon = bar.querySelector('.toggle-icon');
+  const isOpen = section.classList.contains('show');
+  section.classList.toggle('show', !isOpen);
+  icon.classList.toggle('open', !isOpen);
+  bar.querySelector('.toggle-label').textContent = isOpen ? '实践讨论 · 方法提炼' : '收起';
+}
+</script>
+</body>
+</html>
