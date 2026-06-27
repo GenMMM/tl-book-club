@@ -257,7 +257,7 @@ body {
     <div class="book-stats">
       <div class="stat">
         <div class="stat-dot"></div>
-        共 6 场活动
+        共 4 场活动
       </div>
       <div class="stat">
         <div class="stat-dot"></div>
@@ -319,6 +319,21 @@ body {
       <div class="card-arrow">→</div>
     </a>
 
+    <!-- 全书共读 -->
+    <a class="session-card" href="antifragile-quanshu.html">
+      <div class="card-top">
+        <div class="card-chapter">全书共读</div>
+        <div class="card-date">2026-06-24</div>
+      </div>
+      <div class="card-title">凸性只能被发现，可选择性才能被构建</div>
+      <div class="card-tags">
+        <span class="tag">凸性结构</span>
+        <span class="tag">可选择性</span>
+        <span class="tag">杠铃策略</span>
+      </div>
+      <div class="card-arrow">→</div>
+    </a>
+
   </div>
 
   <div class="footer">
@@ -335,7 +350,7 @@ body {
 
   function chapter(card) {
     const m = card.querySelector('.card-chapter').textContent.match(/\d+/);
-    return m ? parseInt(m[0]) : 0;
+    return m ? parseInt(m[0]) : 9999;
   }
 
   function render() {
